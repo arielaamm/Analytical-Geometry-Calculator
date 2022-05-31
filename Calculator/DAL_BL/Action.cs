@@ -33,7 +33,7 @@ namespace DAL_BL
             line.EndPoint = point2;
             line.Name = point1.Name + point2.Name;
             line.Length = GetDistans(point1, point2);
-            double slope = GetSlope(point1, point2);
+            double slope = GetSlope(point1, point2);  
             Equation equation = new Equation()
             {
                 NumPart = -slope*point1.X + point1.Y,
