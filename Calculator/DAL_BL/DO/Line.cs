@@ -17,7 +17,7 @@ namespace DAL_BL.DO
                     "Length:           " + Length + "\n" +
                     "StartPoint-       "  +  StartPoint.Name + ":"+ "   (" + StartPoint.X + "," + StartPoint.Y + ")" + "\n" +
                     "EndPoint-         " +  EndPoint.Name + ":"+  "   ("+ EndPoint.X + "," + EndPoint.Y + ")"+ "\n" +
-                    "Equation:     " + "  y = " + Equation.VariablePart.MultipliedBy + "x" + " + " + Equation.NumPart);
+                    "Equation:     " + "  y = " + Equation.Slope + "x" + " + " + Equation.NumPart);
         }
     }
 }

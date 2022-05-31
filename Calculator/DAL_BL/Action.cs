@@ -18,7 +18,6 @@ namespace DAL_BL
             {
                 Slope = slope,
                 NumPart = slope*p.X - p.Y,
-                VariablePart =  new Variable() { MultipliedBy = slope }
             };
             line.Equation = equation;
             return line;
@@ -37,7 +36,6 @@ namespace DAL_BL
             Equation equation = new Equation()
             {
                 NumPart = -slope*point1.X + point1.Y,
-                VariablePart =  new Variable() { MultipliedBy = slope },
                 Slope = slope,
             };
             line.Equation = equation;
@@ -46,7 +44,7 @@ namespace DAL_BL
 
         public static bool IsPointOnLine(Line line, Point point)
         {
-            if ((line.PointOnLine.Contains(point)) || (point.Y == line.Equation.NumPart + line.Equation.VariablePart.MultipliedBy * point.X))
+            if ((line.PointOnLine.Contains(point)) || (point.Y == line.Equation.NumPart + line.Equation.Slope * point.X))
                 return true;
             return false;
         }
@@ -75,11 +73,11 @@ namespace DAL_BL
 
         public static Point FindIntersection(Line line1, Line line2)
         {
-            if (line1.Equation.VariablePart.MultipliedBy == line2.Equation.VariablePart.MultipliedBy)
+            if (line1.Equation.Slope == line2.Equation.Slope)
                 throw new ParallelException("The two lines are parallel and therefore will never meet");
             Point point = new();
-            point.X = (line1.Equation.NumPart - line2.Equation.NumPart)/(line2.Equation.VariablePart.MultipliedBy - line1.Equation.VariablePart.MultipliedBy);
-            point.Y = line1.Equation.NumPart + line1.Equation.VariablePart.MultipliedBy * point.X;
+            point.X = (line1.Equation.NumPart - line2.Equation.NumPart)/(line2.Equation.Slope - line1.Equation.Slope);
+            point.Y = line1.Equation.NumPart + line1.Equation.Slope * point.X;
             return point;
         }
         /// <summary>
@@ -97,7 +95,7 @@ namespace DAL_BL
         public static Point IntersectionX(Line line)
         {
             Point point = new() { Y = 0 };
-            point.X = (-line.Equation.NumPart)/(line.Equation.VariablePart.MultipliedBy);
+            point.X = (-line.Equation.NumPart)/(line.Equation.Slope);
             return point;
         }
         public static Point IntersectionY(Line line) => new() { X = 0, Y = line.Equation.NumPart };
