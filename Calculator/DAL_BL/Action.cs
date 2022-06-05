@@ -10,6 +10,7 @@ namespace DAL_BL
 
         public static double GetNegativeInverse_slope(double slope) => -1/slope;
 
+        [Obsolete]
         public static double GetNegativeInverse_line(Line line) => GetNegativeInverse_slope(line.GetSlope());
 
         public static double MultipicateVectors(double[] vec1, double[] vec2)
@@ -18,7 +19,7 @@ namespace DAL_BL
         }
         public static double GetAngleBetweenTwoLines(Line line1, Line line2)
         {
-            return Math.Acos(MultipicateVectors(line1.GetVector(), line1.GetVector()) / (line1.GetLengh() * line2.GetLengh()));
+            return Math.Acos(MultipicateVectors(line1.Vector, line1.Vector) / (line1.Lengh * line2.Lengh));
 
         }
         public static List<Line> CheckLineInLines(Line line, List<Line> all_lines)
@@ -27,7 +28,7 @@ namespace DAL_BL
             bool is_line_in_list = false;
             for (int i = 0; i < all_lines.Count; i++)
             {
-                if (line.GetEquation() == all_lines[i].GetEquation())
+                if (line.Equation == all_lines[i].Equation)
                 {
                     for (int k = 0; k < line.PointOnLine.Count; k++)
                     {
@@ -49,12 +50,14 @@ namespace DAL_BL
                 all_lines.Add(line);
             return all_lines;
         }
+        [Obsolete]
         public static List<Line> BuildLine(Point p1, Point p2, List<Line> all_lines)
         {
             Line line = new Line(p1, p2);
             return CheckLineInLines(line, all_lines);
 
         }
+        [Obsolete]
         public static List<Line> BuildLine(Point p1, double slope, List<Line> all_lines)
         {
             Line line = new Line(p1, slope);
@@ -63,22 +66,15 @@ namespace DAL_BL
         }
         public static double GetDistans(Point p1, Point p2) => Math.Sqrt(Math.Pow(p1.Y-p2.Y, 2) + Math.Pow(p1.X-p2.X, 2));
 
-
-        public static Line GetLineEquation(Point point1, Point point2)
+        public static Equation GetLineEquation(Point point1, Point point2)
         {
-            Line line = new Line();
-            line.PointOnLine.Add(point1);
-            line.PointOnLine.Add(point2);
-            line.StartPoint = point1;
-            line.EndPoint = point2;
-            line.Name = point1.Name + point2.Name;
-            double slope = GetSlope_points(point1, point2);  
-            return line;
+            Line line = new Line(point1,point2,point1.Name + point2.Name);
+            return line.Equation;
         }
 
         public static bool IsPointOnLine(Line line, Point point)
         {
-            if ((line.PointOnLine.Contains(point)) || (point.Y == line.GetEquation().NumPart + line.GetEquation().Slope * point.X))
+            if ((line.PointOnLine.Contains(point)) || (point.Y == line.Equation.NumPart + line.Equation.Slope * point.X))
                 return true;
             return false;
         }
@@ -107,11 +103,11 @@ namespace DAL_BL
 
         public static Point FindIntersection(Line line1, Line line2)
         {
-            if (line1.GetEquation().Slope == line2.GetEquation().Slope)
+            if (line1.Equation.Slope == line2.Equation.Slope)
                 throw new ParallelException("The two lines are parallel and therefore will never meet");
             Point point = new();
-            point.X = (line1.GetEquation().NumPart - line2.GetEquation().NumPart)/(line2.GetEquation().Slope - line1.GetEquation().Slope);
-            point.Y = line1.GetEquation().NumPart + line1.GetEquation().Slope * point.X;
+            point.X = (line1.Equation.NumPart - line2.Equation.NumPart)/(line2.Equation.Slope - line1.Equation.Slope);
+            point.Y = line1.Equation.NumPart + line1.Equation.Slope * point.X;
             return point;
         }
         /// <summary>
@@ -122,16 +118,16 @@ namespace DAL_BL
         /// <returns></returns>
         public static double GetArea(Point point, Line line)
         {
-            Line altitude = new Line(point, GetNegativeInverse_line(line));
-            return (GetDistans(point, FindIntersection(line, altitude)) * line.GetLengh())/2;
+            Line altitude = new Line(point, GetNegativeInverse_slope(line.GetSlope()));
+            return (GetDistans(point, FindIntersection(line, altitude)) * line.Lengh)/2;
         }
 
         public static Point IntersectionX(Line line)
         {
             Point point = new() { Y = 0 };
-            point.X = (-line.GetEquation().NumPart)/(line.GetEquation().Slope);
+            point.X = (-line.Equation.NumPart)/(line.Equation.Slope);
             return point;
         }
-        public static Point IntersectionY(Line line) => new() { X = 0, Y = line.GetEquation().NumPart };
+        public static Point IntersectionY(Line line) => new() { X = 0, Y = line.Equation.NumPart };
     }
 }
