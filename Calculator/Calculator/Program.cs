@@ -26,10 +26,10 @@ namespace Calculator
 
             Point point1 = new() { Name = "A", X = num1, Y = num2 };
             Point point2 = new() { Name = "B", X = num3, Y = num4 };
-            Line line = Action.GetLineEquation(point1, point2);
+            Line line = new Line (point1, point2);
             Point point3 = new() { Name = "C", X = num5, Y = num6 };
             Point point4 = new() { Name = "D", X = num7, Y = num8 };
-            Line line2 = Action.GetLineEquation(point3, point4);
+            Line line2 = new Line (point3, point4);
             Point point;
             try
             {
