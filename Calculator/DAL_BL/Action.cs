@@ -1,7 +1,8 @@
-﻿using System;
+﻿using DAL_BL.DO;
+using System;
 using System.Collections.Generic;
 
-namespace DAL_BL.DO
+namespace DAL_BL
 {
     public static class Action
     {

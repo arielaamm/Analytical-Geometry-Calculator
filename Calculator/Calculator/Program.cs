@@ -2,7 +2,7 @@
 using DAL_BL.DO;
 using DAL_BL.DO.PARAMS;
 using Actions2 = DAL_BL.DO.PARAMS.methods;
-using Action = DAL_BL.DO.Action;
+using Action = DAL_BL.Action;
 using System.Collections.Generic;
 
 //f

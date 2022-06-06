@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System;
-using Actions = DAL_BL.DO.Action;
+using Actions = DAL_BL.Action;
 
 namespace DAL_BL.DO
 {
@@ -97,8 +97,8 @@ namespace DAL_BL.DO
         {
             return ("Name:             " + Name + "\n" +
                     "Length:           " + Lengh + "\n" +
-                    "StartPoint-       "  +  StartPoint.Name + ":"+ "   (" + StartPoint.X + "," + StartPoint.Y + ")" + "\n" +
-                    "EndPoint-         " +  EndPoint.Name + ":"+  "   ("+ EndPoint.X + "," + EndPoint.Y + ")"+ "\n" +
+                    "StartPoint:       "  +  StartPoint.Name + ":"+ "   (" + StartPoint.X + "," + StartPoint.Y + ")" + "\n" +
+                    "EndPoint:         " +  EndPoint.Name + ":"+  "   ("+ EndPoint.X + "," + EndPoint.Y + ")"+ "\n" +
                      "Equation:     " + Equation.ToString());
         }
     }
