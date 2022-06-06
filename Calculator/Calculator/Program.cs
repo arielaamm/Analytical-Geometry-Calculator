@@ -1,7 +1,10 @@
 ﻿using System;
 using DAL_BL.DO;
-using DAL_BL;
-using Action = DAL_BL.Action;
+using DAL_BL.DO.PARAMS;
+using Actions2 = DAL_BL.DO.PARAMS.methods;
+using Action = DAL_BL.DO.Action;
+using System.Collections.Generic;
+
 //f
 namespace Calculator
 {
@@ -9,8 +12,33 @@ namespace Calculator
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("enter 4 point pleases");
+            Console.WriteLine("Enter teh pres for the first polinom, end send -5");
+            Polinom p1 = new('x');
             double num1 = double.Parse(Console.ReadLine());
+            int i = 0;
+            while(num1 != -5)
+            {
+                p1.PreNums.Add(num1);
+                i++;
+                num1 = double.Parse(Console.ReadLine());
+            }
+
+            Console.WriteLine("Enter teh pres for the second polinom, end send -5");
+            Polinom p2 = new('x');
+            num1 = double.Parse(Console.ReadLine());
+            i = 0;
+            while (num1 != -5)
+            {
+                p2.PreNums.Add(num1);
+                i++;
+                num1 = double.Parse(Console.ReadLine());
+            }
+
+            Console.WriteLine(Actions2.PolinomsCombine(p1, p2).ToString());
+
+
+            Console.WriteLine("enter 4 point pleases");
+            num1 = double.Parse(Console.ReadLine());
             double num2 = double.Parse(Console.ReadLine());
 
             double num3 = double.Parse(Console.ReadLine());

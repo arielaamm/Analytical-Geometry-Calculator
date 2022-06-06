@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System;
-using Actions = DAL_BL.Action;
+using Actions = DAL_BL.DO.Action;
+
 namespace DAL_BL.DO
 {
     public class Line  //-ישר
