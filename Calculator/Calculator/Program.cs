@@ -12,7 +12,7 @@ namespace Calculator
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter teh pres for the first polinom, end send -5");
+            Console.WriteLine("Enter the pres for the first polinom, end send -5");
             Polinom p1 = new('x');
             double num1 = double.Parse(Console.ReadLine());
             int i = 0;
@@ -23,7 +23,7 @@ namespace Calculator
                 num1 = double.Parse(Console.ReadLine());
             }
 
-            Console.WriteLine("Enter teh pres for the second polinom, end send -5");
+            Console.WriteLine("Enter  pres for the second polinom, end send -5");
             Polinom p2 = new('x');
             num1 = double.Parse(Console.ReadLine());
             i = 0;
@@ -34,6 +34,7 @@ namespace Calculator
                 num1 = double.Parse(Console.ReadLine());
             }
 
+            Console.WriteLine(Actions2.PolinomsAdd(p1, p2).ToString());
             Console.WriteLine(Actions2.PolinomsCombine(p1, p2).ToString());
 
 
