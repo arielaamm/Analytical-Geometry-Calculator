@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using DAL_BL.DO.Simple_Stractures;
+using System.Collections.Generic;
 
 namespace DAL_BL.DO
 {

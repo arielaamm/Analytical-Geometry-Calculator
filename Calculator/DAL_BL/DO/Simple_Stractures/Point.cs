@@ -1,4 +1,4 @@
-﻿namespace DAL_BL.DO
+﻿namespace DAL_BL.DO.Simple_Stractures
 {
     public class Point //-נקודה
     {
@@ -7,8 +7,8 @@
         public string Name { get; set; }
         public override string ToString()
         {
-            return ("Name:       " + Name + "\n" +
-                    "Point:     " +"("+ X + "," + Y + ")");
+            return "Name:       " + Name + "\n" +
+                    "Point:     " + "(" + X + "," + Y + ")";
         }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System;
-using Actions = DAL_BL.Action;
+using Actions = DAL_BL.DO.Simple_Stractures.Action;
 
-namespace DAL_BL.DO
+namespace DAL_BL.DO.Simple_Stractures
 {
     public class Line  //-ישר
     {
@@ -15,8 +15,8 @@ namespace DAL_BL.DO
             get
             {
                 double[] vector = new double[2];
-                vector[0] = EndPoint.X-StartPoint.X;
-                vector[1] = EndPoint.Y-StartPoint.Y;
+                vector[0] = EndPoint.X - StartPoint.X;
+                vector[1] = EndPoint.Y - StartPoint.Y;
                 return vector;
             }
         }
@@ -35,7 +35,7 @@ namespace DAL_BL.DO
         {
             get
             {
-                return Math.Sqrt(Math.Pow(StartPoint.X-EndPoint.X, 2) + Math.Pow(StartPoint.Y-EndPoint.Y, 2));
+                return Math.Sqrt(Math.Pow(StartPoint.X - EndPoint.X, 2) + Math.Pow(StartPoint.Y - EndPoint.Y, 2));
             }
             set { }
         }
@@ -47,9 +47,9 @@ namespace DAL_BL.DO
                 Name = equation.ToString();
             else
                 Name = name_in;
-            StartPoint = new Point { X=  0, Y = equation.NumPart };//נקודת חיתןך ציר וואי
-            EndPoint = new Point { X = -equation.NumPart/equation.Slope, Y = 0 };//נקודת חיתוך עם ציר איקס
-            PointOnLine  = new List<Point>();
+            StartPoint = new Point { X = 0, Y = equation.NumPart };//נקודת חיתןך ציר וואי
+            EndPoint = new Point { X = -equation.NumPart / equation.Slope, Y = 0 };//נקודת חיתוך עם ציר איקס
+            PointOnLine = new List<Point>();
         }
 
         public Line(List<Point> pointOnLine, Point startPoint, Point endPoint, string name = "")
@@ -78,7 +78,7 @@ namespace DAL_BL.DO
             else
                 Name = name_in;
             StartPoint = p;
-            EndPoint = new Point { X = 0, Y =  p.Y - slope * p.X };//נקודת חיתוך עם הציר הוואי כאשר איקס שווה 0
+            EndPoint = new Point { X = 0, Y = p.Y - slope * p.X };//נקודת חיתוך עם הציר הוואי כאשר איקס שווה 0
             PointOnLine = new List<Point>();
             PointOnLine.Add(p);
 
@@ -86,20 +86,20 @@ namespace DAL_BL.DO
 
         public double GetSlope() => Actions.GetSlope_points(StartPoint, EndPoint);
 
-        public Point XEqualK(double k) => new Point { X = k, Y =  Equation.Slope * k + Equation.NumPart };
+        public Point XEqualK(double k) => new Point { X = k, Y = Equation.Slope * k + Equation.NumPart };
 
-        public Point YEqualK(double k) => new Point { X = ((k - Equation.NumPart) / Equation.Slope), Y = k };
+        public Point YEqualK(double k) => new Point { X = (k - Equation.NumPart) / Equation.Slope, Y = k };
 
 
 
 
         public override string ToString()
         {
-            return ("Name:             " + Name + "\n" +
+            return "Name:             " + Name + "\n" +
                     "Length:           " + Lengh + "\n" +
-                    "StartPoint:       "  +  StartPoint.Name + ":"+ "   (" + StartPoint.X + "," + StartPoint.Y + ")" + "\n" +
-                    "EndPoint:         " +  EndPoint.Name + ":"+  "   ("+ EndPoint.X + "," + EndPoint.Y + ")"+ "\n" +
-                     "Equation:     " + Equation.ToString());
+                    "StartPoint:       " + StartPoint.Name + ":" + "   (" + StartPoint.X + "," + StartPoint.Y + ")" + "\n" +
+                    "EndPoint:         " + EndPoint.Name + ":" + "   (" + EndPoint.X + "," + EndPoint.Y + ")" + "\n" +
+                     "Equation:     " + Equation.ToString();
         }
     }
 }

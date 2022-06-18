@@ -11,7 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainApp.Android", "MainApp\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainApp.iOS", "MainApp\MainApp.iOS\MainApp.iOS.csproj", "{1AD231AD-C108-4D9C-94C9-14AD292C627C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainApp", "MainApp\MainApp\MainApp.csproj", "{8D5AE4D4-0B99-4DD6-9C9E-35A996FDE05E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MainApp", "MainApp\MainApp\MainApp.csproj", "{8D5AE4D4-0B99-4DD6-9C9E-35A996FDE05E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C886E180-ECEA-447F-B854-3C09F29E0FC1} = {C886E180-ECEA-447F-B854-3C09F29E0FC1}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
