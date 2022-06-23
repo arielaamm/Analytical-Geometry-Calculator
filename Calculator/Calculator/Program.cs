@@ -5,8 +5,9 @@ using Actions2 = DAL_BL.DO.PARAMS.methods;
 using Action = DAL_BL.DO.Simple_Stractures.Action;
 using System.Collections.Generic;
 using DAL_BL.DO.Simple_Stractures;
+using Drawing;
 using System.Drawing;
-using  System.Drawing.Imaging;
+using System.Drawing.Imaging;
 
 namespace Calculator
 {
@@ -17,11 +18,20 @@ namespace Calculator
             string workingDirectory = Environment.CurrentDirectory;
             string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
             Image image1 = Image.FromFile(projectDirectory + "\\images.jpg");
-            Pen p12 = new Pen(Color.FromName("Black"));
-            var graphic = Graphics.FromImage(image1);
-            graphic.DrawLine(p12, (int)(image1.Width / 2), 0, (int)(image1.Width/2), image1.Height);
-            image1.Save(projectDirectory + "\\image.jpg");
-            
+            //Pen p12 = new Pen(Color.FromName("Black"));
+            //var graphic = Graphics.FromImage(image1);
+            //graphic.DrawLine(p12, (int)(image1.Width / 2), 0, (int)(image1.Width/2), image1.Height);
+            //image1.Save(projectDirectory + "\\image.jpg");
+            DAL_BL.DO.Simple_Stractures.Point p = new DAL_BL.DO.Simple_Stractures.Point();
+            var p2 = new DAL_BL.DO.Simple_Stractures.Point();
+            var p3 = new DAL_BL.DO.Simple_Stractures.Point();
+            p.X = 1; p.Y = 2; p2.X = 0; p2.Y = 0; p3.X = 10; p3.Y = 10;
+            Line line1 = new Line(p, p2);
+            List<DAL_BL.DO.Simple_Stractures.Point> points = new List<DAL_BL.DO.Simple_Stractures.Point>();
+            points.Add(p); points.Add(p2); points.Add(p3);
+            List <Line> lines = new List<Line>();
+            lines.Add(line1);
+            Drawing.Drawing.GetCoordinateSystem(image1, lines, points);
 
 
 
@@ -42,18 +52,18 @@ namespace Calculator
             }
 
             Console.WriteLine("Enter  pres for the second polinom, end send -5");
-            Polinom p2 = new('x');
+            Polinom p12 = new('x');
             num1 = double.Parse(Console.ReadLine());
             i = 0;
             while (num1 != -5)
             {
-                p2.PreNums.Add(num1);
+                p12.PreNums.Add(num1);
                 i++;
                 num1 = double.Parse(Console.ReadLine());
             }
 
-            Console.WriteLine(Actions2.PolinomsAdd(p1, p2).ToString());
-            Console.WriteLine(Actions2.PolinomsCombine(p1, p2).ToString());
+            Console.WriteLine(Actions2.PolinomsAdd(p1, p12).ToString());
+            Console.WriteLine(Actions2.PolinomsCombine(p1, p12).ToString());
 
 
             Console.WriteLine("enter 4 point pleases");

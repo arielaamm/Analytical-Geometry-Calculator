@@ -63,7 +63,13 @@ namespace DAL_BL.DO.Simple_Stractures
             return CheckLineInLines(line, all_lines);
 
         }
-        public static double GetDistans(Point p1, Point p2) => Math.Sqrt(Math.Pow(p1.Y - p2.Y, 2) + Math.Pow(p1.X - p2.X, 2));
+        public static double Distance(Point p1, Point p2) => Math.Sqrt(Math.Pow(p1.Y - p2.Y, 2) + Math.Pow(p1.X - p2.X, 2));
+        public static double Distance(Point p, Line line)
+        {
+            double m = line.GetSlope();
+            double n = line.Equation.NumPart;
+            return Math.Abs(-m * p.X + p.Y - n) / Math.Sqrt(m * m + 1);
+        }
 
         public static Equation GetLineEquation(Point point1, Point point2)
         {
@@ -118,7 +124,7 @@ namespace DAL_BL.DO.Simple_Stractures
         public static double GetArea(Point point, Line line)
         {
             Line altitude = new Line(point, GetNegativeInverse_slope(line.GetSlope()));
-            return GetDistans(point, FindIntersection(line, altitude)) * line.Lengh / 2;
+            return Distance(point, FindIntersection(line, altitude)) * line.Lengh / 2;
         }
 
         public static Point IntersectionX(Line line)
