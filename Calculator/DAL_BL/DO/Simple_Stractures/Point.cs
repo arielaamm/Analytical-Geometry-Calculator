@@ -11,7 +11,7 @@ namespace DAL_BL.DO.Simple_Stractures
         public string Name { get; set; }
         public bool on (Line line)
         {
-            return Y == line.GetSlope() * X + line.Equation.NumPart;
+            return Math.Abs(Y - line.GetSlope() * X + line.Equation.NumPart) < 0.01;
                 
         }
         public override string ToString()
